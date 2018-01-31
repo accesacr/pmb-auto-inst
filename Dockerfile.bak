@@ -1,0 +1,64 @@
+# # Select perl as the base image
+FROM perl:5.20
+
+# Install essential Linux packages
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client git \
+apache2 apache2-doc apache2-utils
+
+# Create application home and get source code inside.
+RUN mkdir -p /home/perl/app
+COPY . /home/perl/app
+
+# App server will need the pids dir so just create everything in one shot
+# RUN mkdir -p /home/perl/tmp/pids
+
+RUN if test -d "/home/perl/app/contained-app-folder"; \
+	then rm -R /home/perl/app/contained-app-folder; fi
+# If the copy didn't brought the source code, download the source code from github directly
+RUN if ! test -d "/home/perl/app/pormibarrio"; \
+	then git clone --recursive https://github.com/datauy/pormibarrio.git /home/perl/app/pormibarrio; fi
+
+# Define where our application will live inside the image
+WORKDIR /home/perl/app/pormibarrio
+
+# Manually modify official repo packages list and install
+RUN cp conf/packages.debian-jessie conf/packages.debian-jessie-localpmb
+#RUN sed -i '/postgresql-server-dev/d' ./conf/packages.debian-jessie-localpmb
+RUN sed -i '/postgresql/d' ./conf/packages.debian-jessie-localpmb
+
+RUN xargs -a conf/packages.debian-jessie-localpmb apt-get -y install
+
+# Manually set perl env variables
+RUN PATH='/home/perl/app/pormibarrio/bin:/home/perl/app/pormibarrio/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'
+RUN PERL5LIB='/home/perl/app/pormibarrio/perllib:/home/perl/app/pormibarrio/commonlib/perllib:/home/perl/app/pormibarrio/local/lib/perl5'
+RUN PERL_LOCAL_LIB_ROOT='/home/perl/app/pormibarrio/local'
+RUN PERL_MB_OPT='--install_base "/home/perl/app/pormibarrio/local"'
+RUN PERL_MM_OPT='INSTALL_BASE=/home/perl/app/pormibarrio/local'
+RUN PS1="(fms) $PS1"
+#RUN eval `perl setenv.pl`
+
+# Install perl dependencies
+RUN bin/install_perl_modules
+# RUN cpanm List::MoreUtils
+RUN cpanm Module::Pluggable
+RUN cpanm Geo::JSON
+# RUN bin/cpanm Module::Pluggable
+# RUN bin/cpanm Geo::JSON
+RUN bin/make_css
+
+# Generate main config file
+RUN cp conf/general.yml-example conf/general.yml
+
+# Missing: configuring the right time zone
+# probably can be done with sed at /etc/timezone (file)
+# ln -s /usr/share/zoneinfo/America/Montevideo /etc/localtime
+# ln -s /usr/share/zoneinfo/America/Costa_Rica /etc/localtime
+# Si el archivo ya existe: mv /etc/localtime /etc/localtime.bk 
+
+# Activate cronjob
+# RUN cp conf/crontab-example conf/crontab
+# RUN crontab conf/crontab
+
+# Define the script we want run once the container boots
+# Use the "exec" form of CMD so our script shuts down gracefully on SIGTERM (i.e. `docker stop`)
+CMD ["sh", "/home/perl/app/auto-executed-within-container-when-starting.sh"]
