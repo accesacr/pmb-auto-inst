@@ -48,6 +48,8 @@ echo "before add_postgres_user"
 add_postgresql_user
 echo "before DEVELOPMENT_INSTALL"
 export DEVELOPMENT_INSTALL
+$REPOSITORY/bin/cpanm Catalyst::ScriptRunner
+$REPOSITORY/bin/cpanm Geo::JSON
 su -c "$REPOSITORY/bin/install-as-user '$UNIX_USER' '$HOST' '$DIRECTORY'" "$UNIX_USER"
 echo "before if DEV INSTALL sysv"
 if [ ! "$DEVELOPMENT_INSTALL" = true ]; then

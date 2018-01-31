@@ -127,6 +127,56 @@ then
     psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema.sql
     psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/alert_types.sql
     psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/generate_secret.sql
+
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0001-add_sessions_and_users_and_dbic_fields.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0002-create_users_from_problems_and_link.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0003-create_users_from_alerts_and_link.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0004-create_users_from_comments_and_link.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0005-add_abuse_flags_to_users_and_reports.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0005-add_council_user_flag.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0006-alter_problem_state.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0007-add-comment-problem-state.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0008-add_user_object_to_admin_log.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0009-add_extra_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0009-update_alerts_problem_state_queries.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0010-add_open311_conf.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0011-add_extra_to_contacts.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0012-add_gecode_column_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0013-add_external_id_to_comment.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0013-add_send_method_column_to_open311conf.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0014-add_send_fail_columns_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0015-add_extra_to_comment.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0015-add_send_method_used_column_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0016-add_whensent_and_send_fail_to_comment.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0017-add_send_comments_to_open311conf.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0018-add_comment_user_to_open311conf.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0019-add_title_to_users.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0020-add_suppress_alerts_to_open311.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0021-add_external_source_columns_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0022-add_interest_count_to_problems.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0023-add_can_be_devolved_and_category_config.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0024-add_non_public_categories_and_problems.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0025-add_more_statuses_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0026-add_send_extended_comments_to_open311conf.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0027-add_sub_category_to_problem.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0028-add-bodies.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0029-add_deleted_flag_to_body.sql
+    #psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0030-drop-action-log-check-constraint.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0031-add_social_sign_in_and_id_to_users.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0032-add_contacts_group.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0033-add_user_picture.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0034-add_users_created_modified_date.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0035-add_comment_new_category.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0036-problem_update_council.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0037-new-state-clarify.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0038-body-comptroller.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0039-group-color.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0040-task-table.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0041-problem-has_updates.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0042-overdues_alert_types.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0043-group_icon_name.sql
+    psql -U "$UNIX_USER" "$DB_NAME" < "$REPOSITORY"/db/schema_0044-user_api_key.sql
+
 else
     bin/cron-wrapper update-schema --commit
 fi
@@ -139,6 +189,4 @@ bin/cron-wrapper bin/make_emptyhomes_welsh_po
 commonlib/bin/gettext-makemo FixMyStreet
 echo $DONE_MSG
 
-bin/cpanm Catalyst::ScriptRunner
-bin/cpanm Geo::JSON
 bin/cron-wrapper update-all-reports
