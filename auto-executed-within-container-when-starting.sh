@@ -1,7 +1,8 @@
 #!/bin/bash
-SOURCE_DIR=/home/perl/app/
-MOUNTED_DIR=/home/perl/exposed-app/
-MOUNTED_APP_DIR=/home/perl/exposed-app/pormibarrio
+SOURCE_DIR=/var/www/fixmystreet/
+SOURCE_APP_DIR=/var/www/fixmystreet/fixmystreet
+MOUNTED_DIR=/var/www/exposed-app/
+MOUNTED_APP_DIR=/var/www/exposed-app/fixmystreet
 
 # Checks if a folder mounted from host is found (hardcoded folder name)
 # If it's found the app is going to run from that persistent folder (exposed to the host for develpment)
@@ -11,12 +12,12 @@ if test -d "$MOUNTED_DIR"; then
 	if ! test -d "$MOUNTED_APP_DIR"; then
 		# If the app's code is not found it is copied into the mounted folder
 		echo "Source code not found on mounted folder: copying contents."
-		cp -R $SOURCE_DIR/* $MOUNTED_DIR/
+		cp -R $SOURCE_APP_DIR $MOUNTED_APP_DIR
 	fi
 	cd $MOUNTED_APP_DIR
 else
 	# If mounted folder is not found then it's going to execute from local non-persistent folder
-	cd $SOURCE_DIR/pormibarrio
+	cd $SOURCE_APP_DIR
 	echo "Mounted directory not found: executing from local dir."
 fi
-script/fixmystreet_app_server.pl -d --fork
+bin/cron-wrapper script/fixmystreet_app_server.pl -d --fork -r --restart_directory .
