@@ -28,7 +28,7 @@ app:
   volumes:
     - ./contained-app-folder:/var/www/fixmystreet/exposed-app/
 
-  environment:
+  # environment:
     
     #- PATH='/home/perl/exposed-app/pormibarrio/bin:/home/perl/exposed-app/pormibarrio/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'
 
