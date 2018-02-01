@@ -20,4 +20,8 @@ else
 	cd $SOURCE_APP_DIR
 	echo "Mounted directory not found: executing from local dir."
 fi
-bin/cron-wrapper script/fixmystreet_app_server.pl -d --fork -r --restart_directory .
+/etc/init.d/postgresql start
+# su pormibarrio
+# bin/cron-wrapper script/fixmystreet_app_server.pl -d --fork -r --restart_directory .
+
+su -c "bin/cron-wrapper script/fixmystreet_app_server.pl -d --fork -r --restart_directory ." "pormibarrio"

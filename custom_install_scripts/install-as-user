@@ -110,6 +110,11 @@ if [ ! -f conf/general.yml ]; then
         -e "s,^( *CONTACT_EMAIL:).*,\\1 'help@$HOST'," \
         -e "s,^( *DO_NOT_REPLY_EMAIL:).*,\\1 'help@$HOST'," \
         conf/general.yml-example > conf/general.yml
+
+    sed -i 's/cobrand1/pormibarriocr/g' conf/general.yml
+    sed -i '/- cobrand2/d' conf/general.yml
+    sed -i '/- cobrand3/d' conf/general.yml
+
     echo $DONE_MSG
 fi
 

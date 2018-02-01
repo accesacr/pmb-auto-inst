@@ -26,7 +26,7 @@ app:
   
   # map our application source code, in full, to the application root of our container
   volumes:
-    - ./contained-app-folder:/var/www/fixmystreet/exposed-app/
+    - ./contained-app-folder:/var/www/exposed-app/
 
   # environment:
     
