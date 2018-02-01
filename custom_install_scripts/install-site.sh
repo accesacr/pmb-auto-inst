@@ -122,14 +122,15 @@ generate_locales() {
             echo "to /etc/locale.gen for generation"
             echo "\nen_GB.UTF-8 UTF-8\ncy_GB.UTF-8 UTF-8" >> /etc/locale.gen
         fi
+        echo "es_CR.UTF-8 UTF-8" >> /etc/locale.gen
         echo "Generating new locales"
         locale-gen
     fi
 }
 
 set_locale() {
-    echo 'LANG="en_GB.UTF-8"' > /etc/default/locale
-    export LANG="en_GB.UTF-8"
+    echo 'LANG="es_CR.UTF-8"' > /etc/default/locale
+    export LANG="es_CR.UTF-8"
 }
 
 add_unix_user() {
