@@ -114,7 +114,13 @@ if [ ! -f conf/general.yml ]; then
     sed -i 's/cobrand1/pormibarriocr/g' conf/general.yml
     sed -i '/- cobrand2/d' conf/general.yml
     sed -i '/- cobrand3/d' conf/general.yml
-
+    sed -i "/LANGUAGES:/a   - 'es,Spanish,es_CR'" conf/general.yml
+    sed -i "/MAPIT_URL: ''/c\MAPIT_URL: 'http://localhost:3000/fakemapit/'" conf/general.yml
+    # Lines below are for non-dev environments
+    #sed -i "/MAPIT_URL: ''/c\MAPIT_URL: 'http://mapit.pormibarrio.uy'" conf/general.yml
+    #sed -i "/MAPIT_TYPES: [ 'ZZZ' ]/c\MAPIT_TYPES: [ 'CAN' ]" conf/general.yml
+    #sed -i "/MAPIT_ID_WHITELIST: []/c\MAPIT_ID_WHITELIST: [184, 228]" conf/general.yml
+    
     echo $DONE_MSG
 fi
 
@@ -195,3 +201,5 @@ commonlib/bin/gettext-makemo FixMyStreet
 echo $DONE_MSG
 
 bin/cron-wrapper update-all-reports
+
+mkdir web/photos
