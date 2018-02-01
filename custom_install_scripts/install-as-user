@@ -114,7 +114,7 @@ if [ ! -f conf/general.yml ]; then
     sed -i 's/cobrand1/pormibarriocr/g' conf/general.yml
     sed -i '/- cobrand2/d' conf/general.yml
     sed -i '/- cobrand3/d' conf/general.yml
-    sed -i "/LANGUAGES:/a   - 'es,Spanish,es_CR'" conf/general.yml
+    sed -i "/LANGUAGES:/a\  - 'es,Spanish,es_CR'" conf/general.yml
     sed -i "/MAPIT_URL: ''/c\MAPIT_URL: 'http://localhost:3000/fakemapit/'" conf/general.yml
     # Lines below are for non-dev environments
     #sed -i "/MAPIT_URL: ''/c\MAPIT_URL: 'http://mapit.pormibarrio.uy'" conf/general.yml
