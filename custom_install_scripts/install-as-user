@@ -87,8 +87,9 @@ export GEM_PATH=
 export PATH="\$GEM_HOME/bin:\$PATH"
 EOBRC
 fi
-
+echo "@ line 90 before gem install compass"
 gem install --no-ri --no-rdoc compass
+echo "@ line 92 after gem install compass"
 
 # Use compass to generate the CSS, if it doesn't seem to already
 # exist:
