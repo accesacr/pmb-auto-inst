@@ -119,7 +119,8 @@ if [ ! -f conf/general.yml ]; then
 
     # Next lines are for dev config (comment if not for dev)
     sed -i "/MAPIT_URL: ''/c\MAPIT_URL: 'http://localhost:3000/fakemapit/'" conf/general.yml
-    sed -i "/BASE_URL: 'http://www.example.org'/c\#BASE_URL: 'http://www.example.org'" conf/general.yml
+    sed -i "/BASE_URL: 'http://www.example.org'/d" conf/general.yml
+    sed -i "/BASE_URL: 'http://127.0.0.1.xip.io'/d" conf/general.yml
     sed -i "/#   BASE_URL: 'http://localhost:3000'/c\BASE_URL: 'http://localhost:3000'" conf/general.yml
     
     # Lines below are for non-dev environments
